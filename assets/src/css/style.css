@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-color: #2b3f2f;
+    --selection-color: #da238e;
+    --main-color-rgb: 26, 164, 168;
+    --secondary-color-rgb: 218, 35, 142;
+
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+::selection {
+    background-color: var(--selection-color);
+    color: whitesmoke;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(to top, black 5%, var(--main-color) 50%);
+    background-repeat: no-repeat;
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    padding: 50px;
+}
+
+h1 {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h2 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.taskContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.taskList {
+    width: 70vw;
+    border: 1px solid #ffffff2e;
+    border-bottom: 5px solid whitesmoke;
+    background: #ede3e333;
+    box-shadow: 0 8px 32px 0 #1f26875e;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taskList p {
+    font-size: 1.35rem;
+    font-weight: bold;
+    text-transform: capitalize;
+
+}
+
+.icon-star,
+.icon-trash,
+.icon-edit,
+.icon-check,
+.icon-faild {
+    padding: 2px 5px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: 0.2s all ease-in-out;
+    opacity: 0.5;
+}
+
+.icon-star {
+    padding: 2px 10px;
+}
+
+.icon-star:hover {
+    color: gold;
+    opacity: 1;
+}
+
+.icon-trash:hover {
+    color: red;
+    opacity: 1;
+}
+
+.icon-edit:hover {
+    color: #2563EB;
+    opacity: 1;
+}
+
+.icon-check:hover {
+    color: green;
+    opacity: 1;
+}
+
+.icon-faild:hover {
+    color: #EA580C;
+    opacity: 1;
+}
+
+form {
+    width: 70vw;
+    text-align: center;
+    margin: 0px auto;
+}
+
+input {
+    width: 35vw;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-align: center;
+    border: none
+}
+
+.taskList p[contenteditable="true"] {
+    outline: 2px solid whitesmoke;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+::placeholder {
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+    opacity: 0.75;
+    text-align: center;
+}
+
+.addTask {
+    all: unset;
+    font-size: 2rem;
+    position: relative;
+    top: 7.5;
+    padding-left: 20px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all ease-in-out;
+}
+
+.addTask:hover {
+    color: #7C3AED;
+}
+
+.check {
+    color: green;
+    text-decoration: wavy line-through;
+}
+
+.taskList.favorite {
+    order: -1;
+}
+
+.taskList.favorite .icon-star {
+    color: gold;
+    opacity: 1;
+}
