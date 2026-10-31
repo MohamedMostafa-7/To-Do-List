@@ -1,37 +1,39 @@
-var input = document.querySelector("input");
-var upload = document.querySelector("#upload");
-var taskContainer = document.querySelector(".taskContainer");
-var taskList = document.querySelectorAll(".taskList");
-var iconStar = document.querySelectorAll(".icon-star");
-
+const input = document.querySelector("input");
+const upload = document.querySelector("#upload");
+const taskContainer = document.querySelector(".taskContainer");
 
 upload.addEventListener("click", (e) => {
     e.preventDefault();
-    var newTask = document.createElement("div");
+    if (input.value.trim() === "") return;
+
+    const newTask = document.createElement("div");
     newTask.classList.add("taskList");
     newTask.innerHTML = `
-    <i class="fa-solid fa-star icon-star"></i>
-    <p>${input.value}</p>
-    <div>
-        <i class="fa-solid fa-trash icon-trash"></i>
-        <i class="fa-solid fa-pen-to-square icon-edit"></i>
-        <i class="fa-regular fa-circle-check icon-check"></i>
-    </div>
+        <i class="fa-solid fa-star icon-star"></i>
+        <p></p>
+        <div>
+            <i class="fa-solid fa-trash icon-trash"></i>
+            <i class="fa-solid fa-pen-to-square icon-edit"></i>
+            <i class="fa-regular fa-circle-check icon-check"></i>
+        </div>
     `;
+    newTask.querySelector("p").textContent = input.value;
     taskContainer.appendChild(newTask);
     input.value = "";
 });
 
 taskContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("icon-star")) {
-        e.target.closest(".taskList").classList.toggle("favorite");
-    }
-});
+    const task = e.target.closest(".taskList");
+    if (!task) return; // ده اللي بيمنع الـ error
 
+    const text = task.querySelector("p");
 
-taskContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("icon-trash")) {
-        e.target.parentElement.parentElement.remove();
+    if (e.target.classList.contains("icon-star")) task.classList.toggle("favorite");
+    if (e.target.classList.contains("icon-trash")) task.remove();
+    if (e.target.classList.contains("icon-check")) text.classList.toggle("check");
+    if (e.target.classList.contains("icon-edit")) {
+        text.contentEditable = true;
+        text.focus();
     }
 });
 
@@ -45,9 +47,7 @@ taskContainer.addEventListener("click", (e) => {
 });
 
 taskContainer.addEventListener("focusout", (e) => {
-    if (e.target.isContentEditable) {
-        e.target.contentEditable = false;
-    }
+    e.target.contentEditable = false;
 });
 
 taskContainer.addEventListener("keydown", (e) => {
@@ -57,8 +57,4 @@ taskContainer.addEventListener("keydown", (e) => {
     }
 });
 
-taskContainer.addEventListener("click", (e) => {
-    const checkBtn = e.target.closest(".icon-check");
 
-    checkBtn.closest(".taskList").querySelector("p").classList.toggle("check");
-});
