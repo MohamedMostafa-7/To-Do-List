@@ -9,7 +9,7 @@
     --selection-color: #da238e;
     --main-color-rgb: 26, 164, 168;
     --secondary-color-rgb: 218, 35, 142;
-
+    --trueTask-color: #5ab14f;
 }
 
 *,
@@ -86,7 +86,6 @@ h2 {
 .icon-edit,
 .icon-check,
 .icon-faild {
-    padding: 2px 5px;
     font-size: 1.3rem;
     cursor: pointer;
     transition: 0.2s all ease-in-out;
@@ -94,6 +93,7 @@ h2 {
 }
 
 .icon-star {
+    background-color: none;
     padding: 2px 10px;
 }
 
@@ -101,6 +101,12 @@ h2 {
     color: goldenrod;
     opacity: 1;
 }
+
+.taskList.favorite .icon-star {
+    color: goldenrod;
+    opacity: 1;
+}
+
 
 .icon-trash:hover {
     color: red;
@@ -112,8 +118,15 @@ h2 {
     opacity: 1;
 }
 
+.icon-check {
+    width: 19px;
+    height: 18.5px;
+    border-radius: 50%;
+}
+
 .icon-check:hover {
-    color: green;
+    color: var(--trueTask-color);
+    background-color: #fff;
     opacity: 1;
 }
 
@@ -170,18 +183,20 @@ input {
 }
 
 .check {
-    color: green;
-    text-decoration: wavy line-through;
+    color: var(--trueTask-color);
+    text-decoration: line-through;
 }
 
-.taskList.favorite {
-    order: -1;
-}
-
-.taskList.favorite .icon-star {
-    color: goldenrod;
+.check2 {
+    color: var(--trueTask-color);
+    background-color: #fff;
     opacity: 1;
 }
+
+.icon-star.favorite {
+    color: goldenrod;
+}
+
 
 /* Media Queries */
 @media screen and (max-width: 600px) {
